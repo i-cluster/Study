@@ -1,4 +1,4 @@
-# SWEA 5656, 모의 역량 테스트
+# SWEA 5656
 
 # import sys
 # sys.stdin = open('sample.txt', 'r')
@@ -34,7 +34,7 @@ def search(i, j, n, brick):
                     c = 1
                     while j > 0 and brick[j-1][i]:
                         # 2칸 이상 벽돌 있으면 넘어가기
-                        if brick[j-1][i] > 1: c = 0; break
+                        if brick[j-1][i] > 1: break
                         c += 1; j -= 1
                     else:
                         j += c-1
