@@ -25,8 +25,3 @@ n = int(input())
 arr = list(map(int, input().split()))
 
 qsort(0, n, arr[-1])
-
-'''
-11
-1 9 6 7 8 5 3 2 4 11 10
-'''
