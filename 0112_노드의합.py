@@ -7,9 +7,6 @@ def find_leaf(k):
     else: global sum_nd; sum_nd += dic[k]
 
 
-import sys
-sys.stdin = open('sample.txt', 'r')
-
 for tc in range(1, int(input())+1):
     n, m, l = map(int, input().split())
     dic, sum_nd = {}, 0

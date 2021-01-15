@@ -11,9 +11,6 @@ def subtree(n):
     return cnt
 
 
-import sys
-sys.stdin = open('sample.txt', 'r')
-
 for tc in range(1, int(input())+1):
     e, n = map(int, input().split())
     arr = list(map(int, input().split()))

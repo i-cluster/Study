@@ -1,9 +1,6 @@
 # SWEA 5177
 # https://bit.ly/39jZ3My
 
-import sys
-sys.stdin = open('sample.txt', 'r')
-
 for tc in range(1, int(input())+1):
     n, heap = int(input()), [0] + list(map(int, input().split()))
 
