@@ -1,4 +1,4 @@
-# SWEA 1824
+# SWEA 1244
 # https://bit.ly/3b0tdXj
 
 cons = {'<': (0, -1), '>': (0, 1), '^': (-1, 0), 'v': (1, 0)}
@@ -25,7 +25,9 @@ def run():
         elif a == '?': d = random(i, j)
         elif a != '.': m = int(a)
 
-        v[i][j] = 1
+        if v[i][j] == (m, d): return 'NO'
+
+        v[i][j] = (m, d)
         i = (i + d[0]) // r
         j = (j + d[1]) // c
 
@@ -39,6 +41,6 @@ for tc in range(1, int(input())+1):
     r, c = map(int, input().split())
     arr = list(input() for _ in range(r))
 
-    v = [[0] * c for _ in range(r)]
+    v = [[()] * c for _ in range(r)]
 
     print(f'#{tc} {run()}')
