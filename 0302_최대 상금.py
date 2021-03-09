@@ -1,20 +1,26 @@
 # SWEA 1824
 # https://bit.ly/3b0tdXj
 
-def change(nums, c):
+def change(nums, c, l):
     i = 0
     while c:
         m = max(nums[i:])
-        cnt = nums.count(m)
+        n = nums.count(m)
 
-        arr = nums[i:i+m]
-        for j in range(cnt):
-            a, k = arr.index(max(arr[j:])), nums.index(m, j)
-            nums[a], nums[k] = nums[k], nums[a]
-            c -= 1
-            if not c: return
+        v = []
+        while n:
+            if nums[i] < m:
+                v.append((i, nums[i]))
+            n -= 1
 
-        i += cnt
+        j = i + 1
+        v.sort(key= lambda x: x[1])
+        while v:
+            while nums[j] != m:
+                j += 1
+            k = v.pop()[0]
+            nums[k], nums[j] = nums[j], nums[k]
+            j += 1
 
 
 import sys
@@ -24,6 +30,6 @@ for tc in range(1, int(input())+1):
     nums, c = input().split()
     nums, c = list(map(int, nums)), int(c)
 
-    change(nums, c)
+    change(nums, c, len(nums))
 
-    print(f'#{tc}')
+    print(f'#{tc} {nums}')
