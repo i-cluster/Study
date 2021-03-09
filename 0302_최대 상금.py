@@ -2,25 +2,31 @@
 # https://bit.ly/3b0tdXj
 
 def change(nums, c, l):
-    i = 0
-    while c:
+    i, m_cnt = 0, 0
+    while c and i < l:
         m = max(nums[i:])
         n = nums.count(m)
+        if n > m_cnt: m_cnt = n
 
         v = []
-        while n:
+        for _ in range(n):
             if nums[i] < m:
                 v.append((i, nums[i]))
-            n -= 1
+                c -= 1
+            i += 1
+            if not c: break
 
-        j = i + 1
-        v.sort(key= lambda x: x[1])
+        j = l
+        v.sort(key= lambda x: x[1], reverse=True)
         while v:
             while nums[j] != m:
-                j += 1
+                j -= 1
             k = v.pop()[0]
             nums[k], nums[j] = nums[j], nums[k]
-            j += 1
+            j -= 1
+
+    if c:
+        if c % 2 and m_cnt == 1: nums[-2], nums[-1] = nums[-1], nums[-2]
 
 
 import sys
@@ -28,8 +34,8 @@ sys.stdin = open('sample.txt', 'r')
 
 for tc in range(1, int(input())+1):
     nums, c = input().split()
-    nums, c = list(map(int, nums)), int(c)
+    nums = list(nums)
 
-    change(nums, c, len(nums))
+    change(nums, int(c), len(nums) - 1)
 
-    print(f'#{tc} {nums}')
+    print(f'#{tc} {"".join(nums)}')
