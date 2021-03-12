@@ -1,4 +1,4 @@
-# SWEA 1824
+# SWEA 1244
 # https://bit.ly/3b0tdXj
 
 def change(nums, c, l):
@@ -25,8 +25,7 @@ def change(nums, c, l):
             nums[k], nums[j] = nums[j], nums[k]
             j -= 1
 
-    if c:
-        if c % 2 and m_cnt == 1: nums[-2], nums[-1] = nums[-1], nums[-2]
+    if c % 2 and m_cnt == 1: nums[-2], nums[-1] = nums[-1], nums[-2]
 
 
 import sys
