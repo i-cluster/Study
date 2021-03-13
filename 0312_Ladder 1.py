@@ -1,5 +1,5 @@
 # SWEA 1210
-# https://bit.ly/3ctoCfE
+# https://bit.ly/3qHaUuT
 
 import sys
 sys.stdin = open('sample.txt', 'r')

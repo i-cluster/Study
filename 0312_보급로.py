@@ -1,5 +1,5 @@
 # SWEA 1249
-# https://bit.ly/3ctoCfE
+# https://bit.ly/3qGBfta
 
 from collections import deque
 
