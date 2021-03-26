@@ -15,6 +15,7 @@ def location(k, s, d, loc):
                 j += 1
             i += 1; j = 0
 
+
 import sys
 sys.stdin = open('sample.txt', 'r')
 
