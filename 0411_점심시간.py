@@ -8,30 +8,41 @@ def run(e):
     out = []
     for i in range(2):
         line, tm = e[i], exit[i][2]
-        line.sort()
+        if line:
+            line.sort()
 
-        # 계단을 다 내려간 시간
-        arrival = [line.pop(0) + 1 + tm for _ in range(min(3, len(line)))]
+            # 계단을 다 내려간 시간
+            arrival = [line[i] + 1 + tm for i in range(min(3, len(line)))]
 
-        # 전부 계단을 내려갈 때까지 반복
-        while line:
-            x, y = arrival.pop(), line.pop(0)
-            # 대기자 없을 경우
-            if y > x: arrival.append(y + tm + 1)
-            # 대기자 있을 경우
-            else: arrival.append(x + tm)
+            i = 3
+            # 전부 계단을 내려갈 때까지 반복
+            while i < len(line):
+                x, y = arrival.pop(0), line[i]
+                # 대기자 없을 경우
+                if y >= x: arrival.append(y + tm + 1)
+                # 대기자 있을 경우
+                else: arrival.append(x + tm)
+                i += 1
 
-        out.append(arrival[-1])
+            out.append(arrival[-1])
 
     global ans
+    # print(out)
     m = max(out)
     if m < ans: ans = m
 
 
 def simulation(i, exit1, exit2):
-    if i == p: run([exit1, exit2])
+    if i == p:
+        # print('1출 :', exit1)
+        # print('2출 :', exit2)
+        run([exit1, exit2])
+        # print(exit1, exit2)
+        # print('-------')
     else:
+        # print(exit1, exit2)
         x, y = peop[i]
+        # print(x, y)
         simulation(i+1, exit1 + [abs(x - exit[0][0]) + abs(y - exit[0][1])], exit2)
         simulation(i+1, exit1, exit2 + [abs(x - exit[1][0]) + abs(y - exit[1][1])])
 
@@ -52,10 +63,11 @@ for tc in range(1, int(input())+1):
         room.append(arr)
 
     ans = (n ** 2) * 10
+    # print(peop, exit)
 
     # 출구 배정
     p = len(peop)
-    # simulation(0, [], [])
-    run([[2, 2, 2, 3], [2, 2]])
+    simulation(0, [], [])
+    # run([[2, 2, 2, 3], [2, 2]])
 
     print(f'#{tc} {ans}')
