@@ -1,8 +1,9 @@
 # SWEA 5644
 # https://bit.ly/2Qzcumk
 
-# 이동 기록 move, bc 정보 bc, 충전량 btr
+# 이동 기록 move, 충전기 정보 bc, 현재 충전량 btr
 # 사용자 이동 후 bc 중심과의 거리 계산
+# 각 사용자의 최적 충전기가 같을 경우 두번째 선택지 중 최대값 더하기
 
 d = [(0, 0), (-1, 0), (0, 1), (1, 0), (0, -1)]
 
@@ -22,6 +23,7 @@ for tc in range(1, int(input())+1):
     # 사용자 위치 pos - [A, B], 배터리 btr
     pos, btr = [[0, 0], [9, 9]], 0
     for r in range(m+1):
+        # 인접 충전기 - [A, B]
         adj_bc = [[(-1, 0), (-1, 0)], [(-1, 0), (-1, 0)]]
         for k in range(2):
             # 이동하기
@@ -40,7 +42,9 @@ for tc in range(1, int(input())+1):
         chrA = sorted(adj_bc[0], key= lambda x: x[1], reverse=True)
         chrB = sorted(adj_bc[1], key= lambda x: x[1], reverse=True)
 
+        # 최대 충전기가 서로 다를 경우
         if chrA[0][0] != chrB[0][0]: btr += chrA[0][1] + chrB[0][1]
+        # 같을 경우
         else: btr += chrA[0][1] + max(chrA[1][1], chrB[1][1])
 
     print(f'#{tc} {btr}')
